@@ -1,10 +1,14 @@
 package appjava.project.snake.controllers;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 
-public class SetColorActionListener extends ActionListener {
+import appjava.project.snake.models.Utilities;
+import appjava.project.snake.views.SnakeView;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class SetColorActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {

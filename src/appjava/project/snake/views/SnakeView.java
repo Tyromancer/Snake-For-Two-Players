@@ -3,6 +3,7 @@ package appjava.project.snake.views;
 import javax.swing.*;
 
 import appjava.project.snake.controllers.SnakeApp;
+import appjava.project.snake.models.Block;
 import appjava.project.snake.models.GameBoard;
 
 import java.awt.*;
@@ -47,7 +48,7 @@ public class SnakeView extends JFrame {
 
         for (int i = 0; i < SnakeApp.app.getRows(); i++) {
             for (int j = 0; j < SnakeApp.app.getCols(); j++) {
-                Block b = new Block();
+                Block b = new Block(i, j);
                 GameBoard.bd.setBlock(i, j, b);
             }
         }

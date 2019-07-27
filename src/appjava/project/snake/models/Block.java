@@ -7,8 +7,9 @@ import javax.swing.*;
 public class Block extends JPanel {
     private Lock lock;
     private Status status;
+    private int row, col;
 
-    public Block() {
+    public Block(int row, int col) {
         super();
         this.status = Status.EMPTY;
     }
@@ -19,5 +20,15 @@ public class Block extends JPanel {
 
     public Status getStatus() {
         return this.status;
+    }
+    
+    public int getRow()
+    {
+    	return this.row;
+    }
+    
+    public int getCol()
+    {
+    	return this.col;
     }
 }
