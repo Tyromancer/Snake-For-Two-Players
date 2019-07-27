@@ -2,6 +2,7 @@ package appjava.project.snake.controllers;
 
 import javax.swing.*;
 
+import appjava.project.snake.models.GameBoard;
 import appjava.project.snake.views.SnakeView;
 
 import java.io.*;
@@ -36,7 +37,7 @@ public class SnakeApp {
      * Get the global logger for debug output and information
      * @return {@link Logger} global logger of the game
      */
-    Logger getLogger() {
+    public Logger getLogger() {
         return this.log;
     }
 
@@ -67,7 +68,7 @@ public class SnakeApp {
         this.cols = 15;
     }
 
-     void saveConfig() {
+    public void saveConfig() {
         try {
             File configFile = new File("conf.properties");
             FileWriter writer = new FileWriter(configFile);
@@ -97,11 +98,20 @@ public class SnakeApp {
         return this.cols;
     }
 
+    public String getProperty(String k) {
+        return this.props.getProperty(k);
+    }
+
+    public void setProperty(String k, String v) {
+        this.props.setProperty(k, v);
+    }
+
 
     public SnakeApp() {
         // SnakeApp.app = this;
         this.props = new Properties();
         this.setupLogger();
         this.loadConfig();
+        GameBoard.bd = new GameBoard();
     }
 }

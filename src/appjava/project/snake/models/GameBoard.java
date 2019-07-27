@@ -2,19 +2,18 @@ package appjava.project.snake.models;
 
 import appjava.project.snake.controllers.SnakeApp;
 
-class GameBoard {
+public class GameBoard {
 
-    static GameBoard bd;
+    public static GameBoard bd;
     private Block[][] board;
 
-    GameBoard() {
+    public GameBoard() {
         this.board = new Block[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
-        for (int i = 0; i < SnakeApp.app.getRows(); i++) {
-            for (int j = 0; j < SnakeApp.app.getCols(); j++) {
-                this.board[i][j] = new Block();
-            }
-        }
         GameBoard.bd = this;
+    }
+
+    public void setBlock(int r, int c, Block src) {
+        this.board[r][c] = src;
     }
 
     /**
@@ -23,7 +22,7 @@ class GameBoard {
      * @param c column number of the tile
      * @return status (type) of the tile at (r, c)
      */
-    Status getStatus(int r, int c) {
+    public Status getStatus(int r, int c) {
         if (r < 0 || r > board.length || c < 0 || c > board[0].length) {
             throw new RuntimeException("Index out of bound when setting tile status");
         }
@@ -36,7 +35,7 @@ class GameBoard {
      * @param c column number
      * @param status 
      */
-    void setStatus(int r, int c, Status status) {
+    public void setStatus(int r, int c, Status status) {
         // check if index out of bound
         if (r < 0 || r > board.length || c < 0 || c > board[0].length) {
             throw new RuntimeException("Index out of bound when setting tile status");

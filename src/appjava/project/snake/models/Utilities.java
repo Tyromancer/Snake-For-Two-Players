@@ -2,13 +2,13 @@ package appjava.project.snake.models;
 
 import java.awt.*;
 
-class Utilities {
+public class Utilities {
     /**
      * Get color based on string input
      * @param color string representing a color
      * @return {@link Color} reference required
      */
-    static Color getColor(String color) {
+    public static Color getColor(String color) {
         // return color based on string input
 
         if (color == null) {

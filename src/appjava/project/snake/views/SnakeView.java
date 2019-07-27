@@ -3,12 +3,13 @@ package appjava.project.snake.views;
 import javax.swing.*;
 
 import appjava.project.snake.controllers.SnakeApp;
+import appjava.project.snake.models.GameBoard;
 
 import java.awt.*;
 
 public class SnakeView extends JFrame {
     /**
-     * Package-wise static reference to this instance
+     * static reference to this instance
      */
     public static SnakeView view;
 
@@ -24,6 +25,7 @@ public class SnakeView extends JFrame {
 
     private void setPreferenceMenu() {
         JMenuItem colorPref = new JMenuItem("Color preferences");
+        
         JMenuItem gamePref = new JMenuItem("Game preferences");
         this.mb.add(colorPref);
         this.mb.add(gamePref);
@@ -42,15 +44,17 @@ public class SnakeView extends JFrame {
         // this.add(gp);
         JPanel gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(SnakeApp.app.getRows(), SnakeApp.app.getCols()));
+
+        for (int i = 0; i < SnakeApp.app.getRows(); i++) {
+            for (int j = 0; j < SnakeApp.app.getCols(); j++) {
+                Block b = new Block();
+                GameBoard.bd.setBlock(i, j, b);
+            }
+        }
         
     }
 
-    private void initGame() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        SnakeView.view = this;
-        SnakeApp.app = new SnakeApp();
-
+    public void initGame() {
         this.setupMenu();
         this.initDisplay();
 
@@ -58,12 +62,9 @@ public class SnakeView extends JFrame {
         this.setVisible(true);
     }
 
-    private SnakeView() {
+    public SnakeView() {
         super("Snake for two players");
-        initGame();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        // TODO: use the constructor
-    }
 }

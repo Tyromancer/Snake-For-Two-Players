@@ -1,6 +1,6 @@
 package appjava.project.snake.models;
 
-enum Status {
+public enum Status {
     PLAYER1,
     PLAYER2,
     EMPTY,

@@ -4,20 +4,20 @@ import java.util.concurrent.locks.Lock;
 
 import javax.swing.*;
 
-class Block extends JPanel {
+public class Block extends JPanel {
     private Lock lock;
     private Status status;
 
-    Block() {
+    public Block() {
         super();
         this.status = Status.EMPTY;
     }
 
-    void setStatus(Status s) {
+    public void setStatus(Status s) {
         this.status = s;
     }
 
-    Status getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 }
