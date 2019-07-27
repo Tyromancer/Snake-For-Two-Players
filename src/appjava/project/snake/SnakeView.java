@@ -1,6 +1,7 @@
 package appjava.project.snake;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SnakeView extends JFrame {
     /**
@@ -9,6 +10,9 @@ public class SnakeView extends JFrame {
     static SnakeView view;
 
     private JMenuBar mb;
+    // private SnakeApp sApp;
+
+
     private void setupMenu() {
         this.mb = new JMenuBar();
         setPreferenceMenu();
@@ -22,18 +26,41 @@ public class SnakeView extends JFrame {
         this.mb.add(gamePref);
     }
 
-    private SnakeView() {
-        super("Snake for two players");
+    private void initDisplay() {
+        // setup the rest of the UI
+        // game board and info area
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.X_AXIS));
+
+        // TODO: implement the game board using a custom JComponent class or just draw rect (since it is faster) ?
+        // GamePanel gp = new GamePanel();
+        // gp.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // gp.setAlignmentY(Component.TOP_ALIGNMENT);
+        // gp.setSize(100 * SnakeApp.app.getCols(), 100 * SnakeApp.app.getRows());
+        // this.add(gp);
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new GridLayout(SnakeApp.app.getRows(), SnakeApp.app.getCols()));
+        
+    }
+
+    private void initGame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         SnakeView.view = this;
+        SnakeApp.app = new SnakeApp();
+
         this.setupMenu();
+        this.initDisplay();
 
         this.pack();
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    private SnakeView() {
+        super("Snake for two players");
+        initGame();
+    }
 
+    public static void main(String[] args) {
+        // TODO: use the constructor
     }
 }

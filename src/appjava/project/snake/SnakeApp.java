@@ -76,9 +76,27 @@ public class SnakeApp {
         }
     }
 
+    // getter functions
+
+    /**
+     * Get the number of rows
+     * @return number of rows of the game board
+     */
+    int getRows() {
+        return this.rows;
+    }
+
+    /**
+     * Get the number of columns
+     * @return number of columns of the game board
+     */
+    int getCols() {
+        return this.cols;
+    }
+
 
     SnakeApp() {
-        SnakeApp.app = this;
+        // SnakeApp.app = this;
         this.props = new Properties();
         this.setupLogger();
         this.loadConfig();
