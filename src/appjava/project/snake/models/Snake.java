@@ -1,6 +1,7 @@
-package appjava.project.snake;
+package appjava.project.snake.models;
 
 import javax.swing.*;
+
 import java.util.*;
 
 class Snake {

@@ -1,13 +1,16 @@
-package appjava.project.snake;
+package appjava.project.snake.views;
 
 import javax.swing.*;
+
+import appjava.project.snake.controllers.SnakeApp;
+
 import java.awt.*;
 
 public class SnakeView extends JFrame {
     /**
      * Package-wise static reference to this instance
      */
-    static SnakeView view;
+    public static SnakeView view;
 
     private JMenuBar mb;
     // private SnakeApp sApp;

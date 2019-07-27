@@ -1,4 +1,4 @@
-package appjava.project.snake;
+package appjava.project.snake.models;
 
 import java.util.concurrent.locks.Lock;
 

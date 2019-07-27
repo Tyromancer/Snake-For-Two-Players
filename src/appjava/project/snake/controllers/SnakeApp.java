@@ -1,6 +1,9 @@
-package appjava.project.snake;
+package appjava.project.snake.controllers;
 
 import javax.swing.*;
+
+import appjava.project.snake.views.SnakeView;
+
 import java.io.*;
 import java.util.Properties;
 import java.util.logging.FileHandler;
@@ -9,7 +12,7 @@ import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
 
 public class SnakeApp {
-    static SnakeApp app;
+    public static SnakeApp app;
     private Properties props;
     private Logger log;
 
@@ -82,7 +85,7 @@ public class SnakeApp {
      * Get the number of rows
      * @return number of rows of the game board
      */
-    int getRows() {
+    public int getRows() {
         return this.rows;
     }
 
@@ -90,12 +93,12 @@ public class SnakeApp {
      * Get the number of columns
      * @return number of columns of the game board
      */
-    int getCols() {
+    public int getCols() {
         return this.cols;
     }
 
 
-    SnakeApp() {
+    public SnakeApp() {
         // SnakeApp.app = this;
         this.props = new Properties();
         this.setupLogger();

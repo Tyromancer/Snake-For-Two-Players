@@ -1,4 +1,6 @@
-package appjava.project.snake;
+package appjava.project.snake.models;
+
+import appjava.project.snake.controllers.SnakeApp;
 
 class GameBoard {
 
