@@ -13,7 +13,7 @@ import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
 
 public class SnakeApp {
-    public static SnakeApp app;
+    public static final SnakeApp app = new SnakeApp();
     private Properties props;
     private Logger log;
 
@@ -106,12 +106,15 @@ public class SnakeApp {
         this.props.setProperty(k, v);
     }
 
+    private SnakeApp()
+    {
+    	
+    }
 
-    public SnakeApp() {
-        // SnakeApp.app = this;
-        this.props = new Properties();
-        this.setupLogger();
-        this.loadConfig();
-        GameBoard.bd = new GameBoard();
+    public static void init() {
+        app.props = new Properties();
+        app.setupLogger();
+        app.loadConfig();
+        GameBoard.init();
     }
 }

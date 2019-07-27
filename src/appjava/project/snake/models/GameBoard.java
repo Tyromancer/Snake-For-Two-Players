@@ -4,12 +4,16 @@ import appjava.project.snake.controllers.SnakeApp;
 
 public class GameBoard {
 
-    public static GameBoard bd;
+    public static final GameBoard bd = new GameBoard();
     private Block[][] board;
 
-    public GameBoard() {
-        this.board = new Block[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
-        GameBoard.bd = this;
+    private GameBoard() {
+    	
+    }
+    
+    public static void init()
+    {
+    	bd.board = new Block[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
     }
 
     public void setBlock(int r, int c, Block src) {
