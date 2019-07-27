@@ -3,10 +3,15 @@ package appjava.project.snake;
 class GameBoard {
 
     static GameBoard bd;
-    private char[][] board;
+    private Block[][] board;
 
     GameBoard() {
-        this.board = new char[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
+        this.board = new Block[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
+        for (int i = 0; i < SnakeApp.app.getRows(); i++) {
+            for (int j = 0; j < SnakeApp.app.getCols(); j++) {
+                this.board[i][j] = new Block();
+            }
+        }
         GameBoard.bd = this;
     }
 
@@ -14,22 +19,22 @@ class GameBoard {
      * Get the status (type) of the specified tile
      * @param r row number of the tile
      * @param c column number of the tile
-     * @return status (type) of the tile at (r, c). If r or c is out of bound, -1 is returned to indicate an error
+     * @return status (type) of the tile at (r, c)
      */
-    char getStatus(int r, int c) {
+    Status getStatus(int r, int c) {
         if (r < 0 || r > board.length || c < 0 || c > board[0].length) {
-            return -1;
+            throw new RuntimeException("Index out of bound when setting tile status");
         }
-        return board[r][c];
+        return board[r][c].getStatus();
     } 
 
     /**
      * Set the type (status) of tile at the given coordinate.
      * @param r row number
      * @param c column number
-     * @param status {@link byte}
+     * @param status 
      */
-    void setStatus(int r, int c, char status) {
+    void setStatus(int r, int c, Status status) {
         // check if index out of bound
         if (r < 0 || r > board.length || c < 0 || c > board[0].length) {
             throw new RuntimeException("Index out of bound when setting tile status");
@@ -41,6 +46,6 @@ class GameBoard {
         // 3 --> AI snake
         // o --> point item
         // etc
-        board[r][c] = status;
+        board[r][c].setStatus(status);;
     }
 }

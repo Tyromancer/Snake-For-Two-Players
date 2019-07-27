@@ -12,4 +12,12 @@ class Block extends JPanel {
         super();
         this.status = Status.EMPTY;
     }
+
+    void setStatus(Status s) {
+        this.status = s;
+    }
+
+    Status getStatus() {
+        return this.status;
+    }
 }
