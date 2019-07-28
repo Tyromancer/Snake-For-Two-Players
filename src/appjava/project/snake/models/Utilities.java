@@ -2,7 +2,16 @@ package appjava.project.snake.models;
 
 import java.awt.*;
 
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 public class Utilities {
+	private static Border border = BorderFactory.createLineBorder(Color.BLACK);
+	private static String user1Head = "Red";
+	private static String user1Tail = "Pink";
+	private static String user2Head = "Orange";
+	private static String user2Tail = "Yellow";
+	
     /**
      * Get color based on string input
      * @param color string representing a color
@@ -44,5 +53,30 @@ public class Utilities {
         }
 
         return c;
+    }
+    
+    public static Border getBorder()
+    {
+    	return border;
+    }
+    
+    public static Color getUser1Head()
+    {
+    	return getColor(user1Head);
+    }
+    
+    public static Color getUser1Tail()
+    {
+    	return getColor(user1Tail);
+    }
+    
+    public static Color getUser2Head()
+    {
+    	return getColor(user2Head);
+    }
+    
+    public static Color getUser2Tail()
+    {
+    	return getColor(user2Tail);
     }
 }

@@ -1,12 +1,11 @@
 package appjava.project.snake.models;
 
-import javax.swing.*;
-
 import java.util.*;
 
 public class Snake {
     private LinkedList<Block> lst;
     private Direction lastDir, newDir;
+    private Owner owner;
 
     /**
      * assume src.length > 3
@@ -16,14 +15,44 @@ public class Snake {
      * @param src
      * @param startDir
      */
-    public Snake(List<Block> src, Direction startDir) {
+    public Snake(LinkedList<Block> src, Direction startDir, Owner owner) {
         this.lst = new LinkedList<>();
+        this.owner = owner;
+        this.lastDir = startDir;
+        this.newDir = startDir;
+        
         for (int i = 0; i < src.size(); i++) {
             lst.add(src.get(i));
         }
         
-        this.lastDir = startDir;
-        this.newDir = startDir;
+        for(Block b : lst)
+        {
+        	switch (owner) {
+			case User1:
+				b.setBackground(Utilities.getUser1Tail());
+				break;
+				
+			case User2:
+				b.setBackground(Utilities.getUser2Tail());
+				break;
+
+			default:
+				break;
+			}
+        }
+        
+        switch (owner) {
+		case User1:
+			lst.getLast().setBackground(Utilities.getUser1Head());
+			break;
+			
+		case User2:
+			lst.getLast().setBackground(Utilities.getUser2Head());
+
+		default:
+			break;
+		}
+
     }
     
     /**

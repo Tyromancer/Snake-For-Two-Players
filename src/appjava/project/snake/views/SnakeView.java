@@ -2,12 +2,6 @@ package appjava.project.snake.views;
 
 import javax.swing.*;
 
-import appjava.project.snake.controllers.SnakeApp;
-import appjava.project.snake.models.Block;
-import appjava.project.snake.models.GameBoard;
-
-import java.awt.*;
-
 public class SnakeView extends JFrame {
     /**
      * static reference to this instance
@@ -43,15 +37,7 @@ public class SnakeView extends JFrame {
         // gp.setAlignmentY(Component.TOP_ALIGNMENT);
         // gp.setSize(100 * SnakeApp.app.getCols(), 100 * SnakeApp.app.getRows());
         // this.add(gp);
-        JPanel gamePanel = new JPanel();
-        gamePanel.setLayout(new GridLayout(SnakeApp.app.getRows(), SnakeApp.app.getCols()));
-
-        for (int i = 0; i < SnakeApp.app.getRows(); i++) {
-            for (int j = 0; j < SnakeApp.app.getCols(); j++) {
-                Block b = new Block(i, j);
-                GameBoard.bd.setBlock(i, j, b);
-            }
-        }
+        this.add(GameBoard.bd);
         
     }
 

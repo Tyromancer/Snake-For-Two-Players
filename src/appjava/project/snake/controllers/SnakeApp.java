@@ -2,7 +2,7 @@ package appjava.project.snake.controllers;
 
 import javax.swing.*;
 
-import appjava.project.snake.models.GameBoard;
+import appjava.project.snake.views.GameBoard;
 import appjava.project.snake.views.SnakeView;
 
 import java.io.*;
@@ -116,5 +116,7 @@ public class SnakeApp {
         app.setupLogger();
         app.loadConfig();
         GameBoard.init();
+        SnakeGenerator.generator.generateUser1();
+        SnakeGenerator.generator.generateUser2();
     }
 }

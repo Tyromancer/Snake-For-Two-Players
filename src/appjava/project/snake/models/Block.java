@@ -12,6 +12,7 @@ public class Block extends JPanel {
     public Block(int row, int col) {
         super();
         this.status = Status.EMPTY;
+        this.setBorder(Utilities.getBorder());
     }
 
     public void setStatus(Status s) {
