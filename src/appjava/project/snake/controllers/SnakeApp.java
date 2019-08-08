@@ -116,7 +116,7 @@ public class SnakeApp {
         app.setupLogger();
         app.loadConfig();
         GameBoard.init();
-        SnakeGenerator.generator.generateUser1();
-        SnakeGenerator.generator.generateUser2();
+        SnakeController.controller.generateUser1();
+        SnakeController.controller.generateUser2();
     }
 }

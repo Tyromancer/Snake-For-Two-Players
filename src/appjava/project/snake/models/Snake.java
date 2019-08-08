@@ -6,6 +6,8 @@ public class Snake {
     private LinkedList<Block> lst;
     private Direction lastDir, newDir;
     private Owner owner;
+    private long moveInterval;
+    private boolean isAlive;
 
     /**
      * assume src.length > 3
@@ -20,6 +22,8 @@ public class Snake {
         this.owner = owner;
         this.lastDir = startDir;
         this.newDir = startDir;
+        this.moveInterval = 500;
+        this.isAlive = true;
         
         for (int i = 0; i < src.size(); i++) {
             lst.add(src.get(i));
@@ -86,5 +90,24 @@ public class Snake {
     	//TODO: update snake body
     	
     	lastDir = newDir;
+    	System.out.println(owner + " move!");
+    }
+    
+    /**
+     * move interval is the number of milliseconds to move once
+     * @return moveInterval
+     */
+    public long getMoveInterval()
+    {
+    	return this.moveInterval;
+    }
+    
+    /**
+     * 
+     * @return true if snake is alive, false otherwise
+     */
+    public boolean isAlive()
+    {
+    	return this.isAlive;
     }
 }

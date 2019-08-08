@@ -7,5 +7,6 @@ public class Main {
         SnakeView.view = new SnakeView();
         SnakeApp.init();
         SnakeView.view.initGame();
+        SnakeController.controller.start();
     }
 }
