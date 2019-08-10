@@ -3,11 +3,15 @@ package appjava.project.snake.views;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 import appjava.project.snake.controllers.SnakeApp;
 import appjava.project.snake.models.Block;
 import appjava.project.snake.models.Status;
 
+/**
+ * Serves as the game board part inside the whole {@link JFrame}
+ */
 public class GameBoard extends JPanel {
 
     public static final GameBoard bd = new GameBoard();

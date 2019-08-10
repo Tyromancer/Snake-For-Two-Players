@@ -1,5 +1,8 @@
 package appjava.project.snake.views;
 
+import appjava.project.snake.controllers.Player1KeyListener;
+import appjava.project.snake.controllers.Player2KeyListener;
+
 import javax.swing.*;
 
 public class SnakeView extends JFrame {
@@ -44,6 +47,8 @@ public class SnakeView extends JFrame {
     public void initGame() {
         this.setupMenu();
         this.initDisplay();
+        this.addKeyListener(new Player1KeyListener());
+        this.addKeyListener(new Player2KeyListener());
 
         this.pack();
         this.setVisible(true);

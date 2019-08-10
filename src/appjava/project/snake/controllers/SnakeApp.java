@@ -112,10 +112,15 @@ public class SnakeApp {
     }
 
     public static void init() {
+        // load properties, set up global logger
         app.props = new Properties();
         app.setupLogger();
         app.loadConfig();
+
+        // initialize game board
         GameBoard.init();
+
+        // generate player 1 and player 2
         SnakeController.controller.generateUser1();
         SnakeController.controller.generateUser2();
     }

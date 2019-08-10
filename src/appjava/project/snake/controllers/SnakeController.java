@@ -18,10 +18,13 @@ public class SnakeController {
 	
 	public void generateUser1()
 	{
+		// build snake by adding blocks
 		LinkedList<Block> lst = new LinkedList<Block>();
 		lst.add(GameBoard.bd.getBlock(0, 0));
 		lst.add(GameBoard.bd.getBlock(0, 1));
 		lst.add(GameBoard.bd.getBlock(0, 2));
+
+		// player 1 will move to the right at start of game
 		this.user1 = new Snake(lst, Direction.RIGHT, Owner.User1);
 		this.user1Thread = new SnakeMovingThread(user1);
 	}
@@ -29,9 +32,9 @@ public class SnakeController {
 	public void generateUser2()
 	{
 		LinkedList<Block> lst = new LinkedList<Block>();
-		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows()-1, SnakeApp.app.getCols()-1));
-		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows()-1, SnakeApp.app.getCols()-2));
-		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows()-1, SnakeApp.app.getCols()-3));
+		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows() - 1, SnakeApp.app.getCols() - 1));
+		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows() - 1, SnakeApp.app.getCols() - 2));
+		lst.add(GameBoard.bd.getBlock(SnakeApp.app.getRows() - 1, SnakeApp.app.getCols() - 3));
 		this.user2 = new Snake(lst, Direction.LEFT, Owner.User2);
 		this.user2Thread = new SnakeMovingThread(user2);
 	}
