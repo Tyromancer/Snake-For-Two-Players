@@ -79,4 +79,9 @@ public class Utilities {
     {
     	return getColor(user2Tail);
     }
+    
+    public static Color emptyColor()
+    {
+    	return getColor("WHITE");
+    }
 }

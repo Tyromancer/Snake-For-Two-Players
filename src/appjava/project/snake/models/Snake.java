@@ -2,6 +2,9 @@ package appjava.project.snake.models;
 
 import java.util.*;
 
+import appjava.project.snake.controllers.SnakeApp;
+import appjava.project.snake.views.GameBoard;
+
 public class Snake {
     private LinkedList<Block> lst;
     private Direction lastDir, newDir;
@@ -11,7 +14,7 @@ public class Snake {
 
     /**
      * assume src.length > 3
-     * assume blocks in src is consistent
+     * assume blocks in src is continuous
      * the first element in src is the tail
      * the last element in src is the head 
      * @param src
@@ -22,7 +25,7 @@ public class Snake {
         this.owner = owner;
         this.lastDir = startDir;
         this.newDir = startDir;
-        this.moveInterval = 500;
+        this.moveInterval = 200;
         this.isAlive = true;
         
         for (int i = 0; i < src.size(); i++) {
@@ -32,11 +35,13 @@ public class Snake {
         for(Block b : lst)
         {
         	switch (owner) {
-			case User1:
+			case PLAYER1:
+				b.setStatus(Status.PLAYER1);
 				b.setBackground(Utilities.getUser1Tail());
 				break;
 				
-			case User2:
+			case PLAYER2:
+				b.setStatus(Status.PLAYER2);
 				b.setBackground(Utilities.getUser2Tail());
 				break;
 
@@ -46,11 +51,11 @@ public class Snake {
         }
         
         switch (owner) {
-		case User1:
+		case PLAYER1:
 			lst.getLast().setBackground(Utilities.getUser1Head());
 			break;
 			
-		case User2:
+		case PLAYER2:
 			lst.getLast().setBackground(Utilities.getUser2Head());
 
 		default:
@@ -84,10 +89,86 @@ public class Snake {
      */
     public void move()
     {
-    	//TODO: find the next block
-    	//TODO: check the next block
-    	//TODO: do the corresponding behavior
-    	//TODO: update snake body
+    	Block head = lst.getLast();
+    	int row = head.getRow();
+    	int col = head.getCol();
+    	switch (newDir) {
+		case UP:
+			row--;
+			break;
+			
+		case DOWN:
+			row++;
+			break;
+			
+		case LEFT:
+			col--;
+			break;
+			
+		case RIGHT:
+			col++;
+			break;
+
+		default:
+			break;
+		}
+    	
+    	if(row < 0 || col < 0 || row >= SnakeApp.app.getRows() || col >= SnakeApp.app.getCols())
+    	{
+    		System.out.println(String.format("ROW: %d COL: %d", row, col));
+    		die();
+    		return;
+    	}
+    	Block next = GameBoard.bd.getBlock(row, col);
+    	next.lock();
+    	Status nextStat = next.getStatus();
+    	
+    	boolean getPoint = false;
+    	switch (nextStat) {
+		case POINT_ITEM:
+			getPoint = true;
+			break;
+			
+		case EMPTY:
+			
+			break;
+
+		default:
+			next.unlock();
+			System.out.println("HERE1");
+			die();
+			return;
+		}
+    	
+    	switch (owner) {
+		case PLAYER1:
+			lst.getLast().setBackground(Utilities.getUser1Tail());
+			next.setStatus(Status.PLAYER1);
+			next.setBackground(Utilities.getUser1Head());
+			lst.add(next);
+			next.unlock();
+			break;
+			
+		case PLAYER2:
+			lst.getLast().setBackground(Utilities.getUser2Tail());
+			next.setStatus(Status.PLAYER2);
+			next.setBackground(Utilities.getUser2Head());
+			lst.add(next);
+			next.unlock();
+			break;
+			
+		default:
+			break;
+		}
+    	
+    	if(!getPoint)
+    	{
+    		Block tail = lst.removeFirst();
+        	tail.lock();
+        	tail.setStatus(Status.EMPTY);
+        	tail.setBackground(Utilities.emptyColor());
+        	tail.unlock();
+    	}
     	
     	lastDir = newDir;
     	System.out.println(owner + " move!");
@@ -109,5 +190,14 @@ public class Snake {
     public boolean isAlive()
     {
     	return this.isAlive;
+    }
+    
+    /**
+     * kill the snake
+     */
+    public void die()
+    {
+    	this.isAlive = false;
+    	System.out.println(owner + " died!");
     }
 }

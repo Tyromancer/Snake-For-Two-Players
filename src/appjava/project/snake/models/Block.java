@@ -12,6 +12,8 @@ public class Block extends JPanel {
     public Block(int row, int col) {
         super();
         this.status = Status.EMPTY;
+        this.row = row;
+        this.col = col;
         this.setBorder(Utilities.getBorder());
     }
 
@@ -31,5 +33,15 @@ public class Block extends JPanel {
     public int getCol()
     {
     	return this.col;
+    }
+    
+    public void lock()
+    {
+    	
+    }
+    
+    public void unlock()
+    {
+    	
     }
 }
