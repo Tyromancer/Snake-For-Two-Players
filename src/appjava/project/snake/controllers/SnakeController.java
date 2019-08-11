@@ -45,8 +45,41 @@ public class SnakeController {
 		user2Thread.start();
 	}
 	
-	public void performAction(PlayerAction action)
-	{
-		
+	public void performAction(PlayerAction action) {
+		switch (action) {
+			case user1Up:
+				user1.changeDirection(Direction.UP);
+				break;
+
+			case user1Left:
+				user1.changeDirection(Direction.LEFT);
+				break;
+
+			case user1Down:
+				user1.changeDirection(Direction.DOWN);
+				break;
+
+			case user1Right:
+				user1.changeDirection(Direction.RIGHT);
+				break;
+
+			case user2Up:
+				user2.changeDirection(Direction.UP);
+				break;
+
+			case user2Left:
+				user2.changeDirection(Direction.LEFT);
+				break;
+
+			case user2Down:
+				user2.changeDirection(Direction.DOWN);
+				break;
+
+			case user2Right:
+				user2.changeDirection(Direction.RIGHT);
+				break;
+			default:
+				return;
+		}
 	}
 }
