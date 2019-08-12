@@ -101,4 +101,9 @@ public class Utilities {
     {
     	return speedDown;
     }
+    
+    public static Color aiColor()
+    {
+    	return getColor("Cyan");
+    }
 }

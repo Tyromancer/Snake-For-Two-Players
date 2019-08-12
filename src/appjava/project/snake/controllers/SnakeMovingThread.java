@@ -1,5 +1,8 @@
 package appjava.project.snake.controllers;
 
+import java.util.Random;
+
+import appjava.project.snake.models.Direction;
 import appjava.project.snake.models.Snake;
 
 public class SnakeMovingThread extends Thread{
@@ -12,10 +15,15 @@ public class SnakeMovingThread extends Thread{
 	@Override
 	public void run()
 	{
-		while(snake.isAlive())
+		while(!SnakeApp.app.isEnd() && snake.isAlive())
 		{
 			try {
 				Thread.sleep(snake.getMoveInterval());
+				if(snake.isAI())
+				{
+					int pick = new Random().nextInt(Direction.values().length);
+				    snake.changeDirection(Direction.values()[pick]);
+				}
 				snake.move();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

@@ -34,6 +34,11 @@ public class Snake {
         
         for(Block b : lst)
         {
+        	b.lock();
+        }
+        
+        for(Block b : lst)
+        {
         	switch (owner) {
 			case PLAYER1:
 				b.setStatus(Status.PLAYER1);
@@ -45,7 +50,10 @@ public class Snake {
 				b.setBackground(Utilities.getUser2Tail());
 				break;
 
-				//TODO: AI
+			case AI:
+				b.setStatus(Status.AI);
+				b.setBackground(Utilities.aiColor());
+				break;
 
 			default:
 				break;
@@ -61,11 +69,18 @@ public class Snake {
 			lst.getLast().setBackground(Utilities.getUser2Head());
 			break;
 
-			//TODO: AI
+		case AI:
+			lst.getLast().setBackground(Utilities.aiColor().darker());
+			break;
 
 		default:
 			break;
 		}
+        
+        for(Block b : lst)
+        {
+        	b.unlock();
+        }
 
     }
     
@@ -174,7 +189,13 @@ public class Snake {
 			next.unlock();
 			break;
 
-			//TODO: AI
+		case AI:
+			lst.getLast().setBackground(Utilities.aiColor());
+			next.setStatus(Status.AI);
+			next.setBackground(Utilities.aiColor().darker());
+			lst.add(next);
+			next.unlock();
+			break;
 			
 		default:
 			break;
@@ -216,9 +237,27 @@ public class Snake {
      */
     public void die()
     {
-		//TODO: die
+		//TODO: die for player
     	this.isAlive = false;
     	System.out.println(owner + " died!");
+    	if(owner == Owner.AI)
+    	{
+    		for(Block b : lst)
+    		{
+    			b.lock();
+    		}
+    		
+    		for(Block b : lst)
+    		{
+    			b.setStatus(Status.POINT_ITEM);
+    			b.setBackground(Utilities.pointColor());
+    		}
+    		
+    		for(Block b : lst)
+    		{
+    			b.unlock();
+    		}
+    	}
     }
     
     public void speedUp()
@@ -229,5 +268,10 @@ public class Snake {
     public void speedDown()
     {
     	this.moveInterval /= 0.9;
+    }
+    
+    public boolean isAI()
+    {
+    	return this.owner == Owner.AI;
     }
 }

@@ -31,8 +31,8 @@ public class AISnakeGenerateThread extends Thread {
 
 
             Random random = new Random();
-            int r = random.nextInt( ( rows - 2 ) + 1 ) + 2;
-            int c = random.nextInt( ( cols - 2 ) + 1 ) + 2;
+            int r = random.nextInt(rows - 4) + 2;
+            int c = random.nextInt(cols - 4) + 2;
 
             LinkedList<Block> body = new LinkedList<>();
             // get the randomized init direction
@@ -70,10 +70,9 @@ public class AISnakeGenerateThread extends Thread {
 
             // blink the area
             for (int i = 0; i < 5; i++) {
-                if (body.get(i).isLocked()) { continue; }
 
                 for (Block b : body) {
-                    if (b.getStatus() != Status.PLAYER1 && b.getStatus() != Status.PLAYER2) {
+                    if (!b.isLocked() && b.getStatus() != Status.PLAYER1 && b.getStatus() != Status.PLAYER2) {
 
                         b.lock();
                         b.setStatus(Status.BLINK);
@@ -120,11 +119,11 @@ public class AISnakeGenerateThread extends Thread {
                     if (!b.isLocked() && b.getStatus() != Status.PLAYER1 && b.getStatus() != Status.PLAYER2 && b.getStatus() != Status.AI) {
                         b.lock();
                         b.setStatus(Status.POINT_ITEM);
+                        b.setBackground(Utilities.pointColor());
                         b.unlock();
                     }
                 }
             }
-            // new SnakeMovingThread(snake)
         }
     }
 }
