@@ -132,6 +132,14 @@ public class Snake {
 		case EMPTY:
 			
 			break;
+			
+		case SPEED_UP:
+			speedUp();
+			break;
+			
+		case SPEED_DOWN:
+			speedDown();
+			break;
 
 		default:
 			next.unlock();
@@ -199,5 +207,15 @@ public class Snake {
     {
     	this.isAlive = false;
     	System.out.println(owner + " died!");
+    }
+    
+    public void speedUp()
+    {
+    	this.moveInterval *= 0.9;
+    }
+    
+    public void speedDown()
+    {
+    	this.moveInterval /= 0.9;
     }
 }

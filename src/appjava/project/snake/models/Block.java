@@ -1,11 +1,11 @@
 package appjava.project.snake.models;
 
-import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.*;
 
 public class Block extends JPanel {
-    private Lock lock;
+    private ReentrantLock lock;
     private Status status;
     private int row, col;
 
@@ -14,6 +14,7 @@ public class Block extends JPanel {
         this.status = Status.EMPTY;
         this.row = row;
         this.col = col;
+        this.lock = new ReentrantLock();
         this.setBorder(Utilities.getBorder());
     }
 
@@ -37,11 +38,16 @@ public class Block extends JPanel {
     
     public void lock()
     {
-    	
+    	lock.lock();
     }
     
     public void unlock()
     {
-    	
+    	lock.unlock();
+    }
+    
+    public boolean isLocked()
+    {
+    	return lock.isLocked();
     }
 }

@@ -11,6 +11,8 @@ public class Utilities {
 	private static String user1Tail = "Pink";
 	private static String user2Head = "Orange";
 	private static String user2Tail = "Yellow";
+	private static Color speedUp = new Color(178,156,231);
+	private static Color speedDown = new Color(111,123,11);
 	
     /**
      * Get color based on string input
@@ -83,5 +85,20 @@ public class Utilities {
     public static Color emptyColor()
     {
     	return getColor("WHITE");
+    }
+    
+    public static Color pointColor()
+    {
+    	return getColor("Green");
+    }
+    
+    public static Color speedUpColor()
+    {
+    	return speedUp;
+    }
+    
+    public static Color speedDownColor()
+    {
+    	return speedDown;
     }
 }

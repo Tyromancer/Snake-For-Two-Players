@@ -19,6 +19,7 @@ public class SnakeApp {
 
     private int rows;
     private int cols;
+    private boolean isEnd;
 
     private void setupLogger() {
         this.log = Logger.getLogger("SnakeApp");
@@ -97,6 +98,11 @@ public class SnakeApp {
     public int getCols() {
         return this.cols;
     }
+    
+    public boolean isEnd()
+    {
+    	return this.isEnd;
+    }
 
     public String getProperty(String k) {
         return this.props.getProperty(k);
@@ -112,6 +118,7 @@ public class SnakeApp {
     }
 
     public static void init() {
+    	app.isEnd = false;
         // load properties, set up global logger
         app.props = new Properties();
         app.setupLogger();
@@ -123,5 +130,8 @@ public class SnakeApp {
         // generate player 1 and player 2
         SnakeController.controller.generateUser1();
         SnakeController.controller.generateUser2();
+        
+        AutoPointGenerator a = new AutoPointGenerator();
+        a.start();
     }
 }

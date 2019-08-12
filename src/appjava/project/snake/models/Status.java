@@ -4,5 +4,7 @@ public enum Status {
     PLAYER1,
     PLAYER2,
     EMPTY,
-    POINT_ITEM
+    POINT_ITEM,
+    SPEED_UP,
+    SPEED_DOWN
 }
