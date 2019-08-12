@@ -6,5 +6,7 @@ public enum Status {
     EMPTY,
     POINT_ITEM,
     SPEED_UP,
-    SPEED_DOWN
+    SPEED_DOWN,
+    BLINK,
+    AI
 }

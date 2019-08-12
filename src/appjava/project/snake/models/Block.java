@@ -12,10 +12,11 @@ public class Block extends JPanel {
     public Block(int row, int col) {
         super();
         this.status = Status.EMPTY;
+        this.setBackground(Utilities.emptyColor());
         this.row = row;
         this.col = col;
         this.lock = new ReentrantLock();
-        this.setBorder(Utilities.getBorder());
+        // this.setBorder(Utilities.getBorder());
     }
 
     public void setStatus(Status s) {

@@ -63,10 +63,10 @@ public class SnakeApp {
         props.setProperty("p2Color", "Red");
         props.setProperty("emptyColor", "White");
         props.setProperty("itemColor", "Yellow");
-        props.setProperty("rows", "15");
-        props.setProperty("cols", "15");
-        this.rows = 15;
-        this.cols = 15;
+        props.setProperty("rows", "40");
+        props.setProperty("cols", "40");
+        this.rows = 40;
+        this.cols = 40;
     }
 
     public void saveConfig() {
@@ -132,6 +132,8 @@ public class SnakeApp {
         SnakeController.controller.generateUser2();
         
         AutoPointGenerator a = new AutoPointGenerator();
+        AISnakeGenerateThread my_b = new AISnakeGenerateThread();
         a.start();
+        my_b.start();
     }
 }

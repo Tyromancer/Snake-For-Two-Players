@@ -45,6 +45,8 @@ public class Snake {
 				b.setBackground(Utilities.getUser2Tail());
 				break;
 
+				//TODO: AI
+
 			default:
 				break;
 			}
@@ -57,6 +59,9 @@ public class Snake {
 			
 		case PLAYER2:
 			lst.getLast().setBackground(Utilities.getUser2Head());
+			break;
+
+			//TODO: AI
 
 		default:
 			break;
@@ -132,6 +137,10 @@ public class Snake {
 		case EMPTY:
 			
 			break;
+
+		case BLINK:
+
+			break;
 			
 		case SPEED_UP:
 			speedUp();
@@ -164,6 +173,8 @@ public class Snake {
 			lst.add(next);
 			next.unlock();
 			break;
+
+			//TODO: AI
 			
 		default:
 			break;
@@ -205,6 +216,7 @@ public class Snake {
      */
     public void die()
     {
+		//TODO: die
     	this.isAlive = false;
     	System.out.println(owner + " died!");
     }
