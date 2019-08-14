@@ -4,6 +4,7 @@ import java.util.*;
 
 import appjava.project.snake.controllers.SnakeApp;
 import appjava.project.snake.views.GameBoard;
+import appjava.project.snake.views.SnakeView;
 
 public class Snake {
     private LinkedList<Block> lst;
@@ -147,6 +148,11 @@ public class Snake {
     	switch (nextStat) {
 		case POINT_ITEM:
 			getPoint = true;
+			if (owner == Owner.PLAYER1) {
+				SnakeView.view.addPts1();
+			} else if (owner == Owner.PLAYER2) {
+				SnakeView.view.addPts2();
+			}
 			break;
 			
 		case EMPTY:
@@ -263,11 +269,21 @@ public class Snake {
     public void speedUp()
     {
     	this.moveInterval *= 0.9;
+    	if (owner == Owner.PLAYER1) {
+    		SnakeView.view.setV1(1.0 / this.moveInterval);
+		} else if (owner == Owner.PLAYER2) {
+    		SnakeView.view.setV2(1.0 / this.moveInterval);
+		}
     }
     
     public void speedDown()
     {
     	this.moveInterval /= 0.9;
+		if (owner == Owner.PLAYER1) {
+			SnakeView.view.setV1(1.0 / this.moveInterval);
+		} else if (owner == Owner.PLAYER2) {
+			SnakeView.view.setV2(1.0 / this.moveInterval);
+		}
     }
     
     public boolean isAI()
