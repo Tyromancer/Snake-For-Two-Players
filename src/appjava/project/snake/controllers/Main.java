@@ -9,7 +9,7 @@ public class Main {
 
         // initialize controller
         SnakeApp.init();
-        SnakeView.view.initGame();
-        SnakeController.controller.start();
+//        SnakeView.view.initGame();
+//        SnakeController.controller.start();
     }
 }

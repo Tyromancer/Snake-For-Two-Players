@@ -2,9 +2,11 @@ package appjava.project.snake.views;
 
 import appjava.project.snake.controllers.Player1KeyListener;
 import appjava.project.snake.controllers.Player2KeyListener;
+import appjava.project.snake.controllers.SnakeApp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class SnakeView extends JFrame {
     /**
@@ -49,11 +51,51 @@ public class SnakeView extends JFrame {
     }
 
     private void setPreferenceMenu() {
-        JMenuItem colorPref = new JMenuItem("Color preferences");
         
         JMenuItem gamePref = new JMenuItem("Game preferences");
-        this.mb.add(colorPref);
-        this.mb.add(gamePref);
+//        gamePref.addActionListener((ActionEvent e) -> {
+//            JDialog prefDialog = new JDialog();
+//            prefDialog.setLayout(new GridLayout());
+//
+//            prefDialog.add(new JLabel("#Rows (30 - 100):"));
+//            JTextField tfRow = new JTextField(3);
+//            prefDialog.add(tfRow);
+//
+//            prefDialog.add(new JLabel("#Cols (30 - 100):"));
+//            JTextField tfCol = new JTextField(3);
+//            prefDialog.add(tfCol);
+//
+//            JButton cancelButton = new JButton("Cancel");
+//            cancelButton.addActionListener((ActionEvent e1)->{
+//                prefDialog.dispose();
+//            });
+//            prefDialog.add(cancelButton);
+//
+//            JButton confirmButton = new JButton("Apply");
+//            confirmButton.addActionListener((ActionEvent e1)->{
+//                int row, col;
+//                try {
+//                    row = Integer.parseInt(tfRow.getText());
+//                    if (row < 30 || row > 100) { throw new NumberFormatException(); }
+//                } catch (NumberFormatException nfe) {
+//                    JOptionPane.showMessageDialog(prefDialog, "Invalid number of rows");
+//                    return;
+//                }
+//
+//                try {
+//                    col = Integer.parseInt(tfCol.getText());
+//                    if (col < 30 || col > 100) { throw new NumberFormatException(); }
+//                } catch (NumberFormatException nfe) {
+//                    JOptionPane.showMessageDialog(prefDialog, "Invalid number of cols");
+//                    return;
+//                }
+//
+//                SnakeApp.app.setProperty("rows", String.valueOf(row));
+//                SnakeApp.app.setProperty("cols", String.valueOf(col));
+//
+//            });
+//        });
+//        this.mb.add(gamePref);
     }
 
     private void initDisplay() {
@@ -77,11 +119,11 @@ public class SnakeView extends JFrame {
         statPanel.setLayout(new GridLayout(4, 2));
 
         statPanel.add(new JLabel("Points of Player 1:"));
-        this.pts1 = new JLabel("0");
+        this.pts1 = new JLabel("3");
         statPanel.add(this.pts1);
 
         statPanel.add(new JLabel("Points of Player 2:"));
-        this.pts2 = new JLabel("0");
+        this.pts2 = new JLabel("3");
         statPanel.add(this.pts2);
 
         statPanel.add(new JLabel("Speed of Player 1:"));

@@ -2,9 +2,12 @@ package appjava.project.snake.controllers;
 
 import javax.swing.*;
 
+import appjava.project.snake.models.Owner;
 import appjava.project.snake.views.GameBoard;
 import appjava.project.snake.views.SnakeView;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.Properties;
 import java.util.logging.FileHandler;
@@ -17,8 +20,18 @@ public class SnakeApp {
     private Properties props;
     private Logger log;
 
+    public static int p1Up;
+    public static int p1Down;
+    public static int p1Left;
+    public static int p1Right;
+    public static int p2Up;
+    public static int p2Down;
+    public static int p2Left;
+    public static int p2Right;
+
     private int rows;
     private int cols;
+    private int maxPts;
     private boolean isEnd;
 
     private void setupLogger() {
@@ -44,17 +57,18 @@ public class SnakeApp {
 
     private void loadConfig() {
         this.props = new Properties();
-        try {
-            File configFile = new File("./conf.properties");
-            if (!configFile.exists()) { throw new FileNotFoundException("Config file does not exist"); }
-            FileReader reader = new FileReader(configFile);
-            props.load(reader);
-            reader.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Cannot load config file, Default configuration is used instead.");
-            this.log.warning("Cannot load config file, Default configuration is used instead.\n");
-            loadDefaultConfig();
-        }
+        loadDefaultConfig();
+//        try {
+//            File configFile = new File("./conf.properties");
+//            if (!configFile.exists()) { throw new FileNotFoundException("Config file does not exist"); }
+//            FileReader reader = new FileReader(configFile);
+//            props.load(reader);
+//            reader.close();
+//        } catch (IOException e) {
+//            JOptionPane.showMessageDialog(null, "Cannot load config file, Default configuration is used instead.");
+//            this.log.warning("Cannot load config file, Default configuration is used instead.\n");
+//            loadDefaultConfig();
+//        }
     }
 
     private void loadDefaultConfig() {
@@ -65,21 +79,24 @@ public class SnakeApp {
         props.setProperty("itemColor", "Yellow");
         props.setProperty("rows", "40");
         props.setProperty("cols", "40");
+        props.setProperty("maxPts", "30");
+
+        this.maxPts = 30;
         this.rows = 40;
         this.cols = 40;
     }
 
-    public void saveConfig() {
-        try {
-            File configFile = new File("conf.properties");
-            FileWriter writer = new FileWriter(configFile);
-            props.store(writer, "Game settings");
-            writer.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(SnakeView.view, String.format("Failed to save configs: %s", e.getMessage()));
-            log.severe(String.format("Failed to save configs: %s", e.getMessage()));
-        }
-    }
+//    public void saveConfig() {
+//        try {
+//            File configFile = new File("conf.properties");
+//            FileWriter writer = new FileWriter(configFile);
+//            props.store(writer, "Game settings");
+//            writer.close();
+//        } catch (IOException e) {
+//            JOptionPane.showMessageDialog(SnakeView.view, String.format("Failed to save configs: %s", e.getMessage()));
+//            log.severe(String.format("Failed to save configs: %s", e.getMessage()));
+//        }
+//    }
 
     // getter functions
 
@@ -88,7 +105,7 @@ public class SnakeApp {
      * @return number of rows of the game board
      */
     public int getRows() {
-        return this.rows;
+        return Integer.parseInt(props.getProperty("rows"));
     }
 
     /**
@@ -96,7 +113,7 @@ public class SnakeApp {
      * @return number of columns of the game board
      */
     public int getCols() {
-        return this.cols;
+        return Integer.parseInt(props.getProperty("cols"));
     }
     
     public boolean isEnd()
@@ -112,9 +129,31 @@ public class SnakeApp {
         this.props.setProperty(k, v);
     }
 
+    public int getMaxPts() {
+        return maxPts;
+    }
+
     private SnakeApp()
     {
     	
+    }
+
+    public void winGame(Owner player) {
+        this.isEnd = true;
+        if (player == Owner.PLAYER1) {
+            JOptionPane.showMessageDialog(SnakeView.view, "Player 1 WON!");
+        } else {
+            JOptionPane.showMessageDialog(SnakeView.view, "Player 2 WON!");
+        }
+    }
+
+    public void endGame(Owner player) {
+        this.isEnd = true;
+        if (player == Owner.PLAYER1) {
+            JOptionPane.showMessageDialog(SnakeView.view, "Player 2 WON!");
+        } else {
+            JOptionPane.showMessageDialog(SnakeView.view, "Player 1 WON!");
+        }
     }
 
     public static void init() {
@@ -122,18 +161,110 @@ public class SnakeApp {
         // load properties, set up global logger
         app.props = new Properties();
         app.setupLogger();
+
         app.loadConfig();
 
-        // initialize game board
-        GameBoard.init();
+        JDialog pref = new JDialog();
+        pref.setLayout(new GridLayout(5, 2));
 
-        // generate player 1 and player 2
-        SnakeController.controller.generateUser1();
-        SnakeController.controller.generateUser2();
-        
-        AutoPointGenerator a = new AutoPointGenerator();
-        AISnakeGenerateThread my_b = new AISnakeGenerateThread();
-        a.start();
-        my_b.start();
+        pref.add(new JLabel("#Rows (30 - 100):"));
+        JTextField tfRow = new JTextField(3);
+        tfRow.setText("40");
+        pref.add(tfRow);
+
+        pref.add(new JLabel("#Cols (30 - 100)"));
+        JTextField tfCol = new JTextField(3);
+        tfCol.setText("40");
+        pref.add(tfCol);
+
+        pref.add(new JLabel("Player 1 key bindings:"));
+        String[] p1keys = {"WASD", "ZXCV"};
+        JComboBox<String> player1Keys = new JComboBox<>(p1keys);
+        player1Keys.setSelectedItem("WASD");
+        pref.add(player1Keys);
+
+        pref.add(new JLabel("Player 2 key bindings:"));
+        String[] p2Keys = {"ARROWS", "HJKL"};
+        JComboBox<String> player2Keys = new JComboBox<>(p2Keys);
+        player2Keys.setSelectedItem("ARROWS");
+        pref.add(player2Keys);
+
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener((ActionEvent e) -> {
+            pref.dispose();
+            return;
+        });
+        pref.add(cancelButton);
+
+        JButton confirmButton = new JButton("Apply");
+        confirmButton.addActionListener((ActionEvent e) -> {
+            int row, col;
+            try {
+                row = Integer.parseInt(tfRow.getText());
+                if (row < 30 || row > 100) { throw new NumberFormatException(); }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(pref, "Invalid number of rows");
+                return;
+            }
+
+            try {
+                col = Integer.parseInt(tfCol.getText());
+                if (col < 30 || col > 100) { throw new NumberFormatException(); }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(pref, "Invalid number of cols");
+                return;
+            }
+
+            SnakeApp.app.setProperty("rows", String.valueOf(row));
+            SnakeApp.app.setProperty("cols", String.valueOf(col));
+
+            String p1Binding = (String) player1Keys.getSelectedItem();
+            if (p1Binding.equals("WASD")) {
+                p1Up = 87;
+                p1Down = 83;
+                p1Left = 65;
+                p1Right = 68;
+            } else {
+                p1Up = 88;
+                p1Down = 67;
+                p1Left = 90;
+                p1Right = 86;
+            }
+
+            String p2Binding = (String) player2Keys.getSelectedItem();
+            if (p2Binding.equals("ARROWS")) {
+                p2Up = 38;
+                p2Down = 40;
+                p2Left = 37;
+                p2Right = 39;
+            } else {
+                p2Up = 74;
+                p2Down = 75;
+                p2Left = 72;
+                p2Right = 76;
+            }
+
+            // initialize game board
+            GameBoard.init();
+
+            // generate player 1 and player 2
+            SnakeController.controller.generateUser1();
+            SnakeController.controller.generateUser2();
+
+            AutoPointGenerator a = new AutoPointGenerator();
+            AISnakeGenerateThread my_b = new AISnakeGenerateThread();
+            a.start();
+            my_b.start();
+
+            SnakeView.view.initGame();
+            SnakeController.controller.start();
+
+            pref.dispose();
+        });
+
+        pref.add(confirmButton);
+        pref.pack();
+        pref.setVisible(true);
+
     }
 }

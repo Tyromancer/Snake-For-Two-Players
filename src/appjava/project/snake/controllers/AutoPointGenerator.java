@@ -22,7 +22,9 @@ public class AutoPointGenerator extends Thread {
 				e.printStackTrace();
 				return;
 			}
-			
+
+			interval += 10;
+
 			int total_row = SnakeApp.app.getRows();
 			int total_col = SnakeApp.app.getCols();
 			

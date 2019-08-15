@@ -9,7 +9,7 @@ import java.util.Random;
 
 
 public class AISnakeGenerateThread extends Thread {
-    private static final int interval = 5000;
+    private static int interval = 5000;
 
 //    private List<Block> getBlocks(int r, int c, Direction d) {
 //        switch
@@ -25,6 +25,8 @@ public class AISnakeGenerateThread extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            interval += 10;
 
             int rows = SnakeApp.app.getRows();
             int cols = SnakeApp.app.getCols();

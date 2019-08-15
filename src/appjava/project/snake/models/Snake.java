@@ -153,6 +153,7 @@ public class Snake {
 			} else if (owner == Owner.PLAYER2) {
 				SnakeView.view.addPts2();
 			}
+
 			break;
 			
 		case EMPTY:
@@ -173,7 +174,6 @@ public class Snake {
 
 		default:
 			next.unlock();
-			System.out.println("HERE1");
 			die();
 			return;
 		}
@@ -214,10 +214,15 @@ public class Snake {
         	tail.setStatus(Status.EMPTY);
         	tail.setBackground(Utilities.emptyColor());
         	tail.unlock();
+
     	}
+
+		if (this.lst.size() == SnakeApp.app.getMaxPts()) {
+			SnakeApp.app.winGame(owner);
+		}
     	
     	lastDir = newDir;
-    	System.out.println(owner + " move!");
+    	//System.out.println(owner + " move!");
     }
     
     /**
@@ -243,7 +248,6 @@ public class Snake {
      */
     public void die()
     {
-		//TODO: die for player
     	this.isAlive = false;
     	System.out.println(owner + " died!");
     	if(owner == Owner.AI)
@@ -263,7 +267,12 @@ public class Snake {
     		{
     			b.unlock();
     		}
-    	}
+    	} else {
+    		SnakeApp.app.endGame(this.owner);
+
+		}
+
+
     }
     
     public void speedUp()
