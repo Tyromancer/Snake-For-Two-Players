@@ -58,17 +58,6 @@ public class SnakeApp {
     private void loadConfig() {
         this.props = new Properties();
         loadDefaultConfig();
-//        try {
-//            File configFile = new File("./conf.properties");
-//            if (!configFile.exists()) { throw new FileNotFoundException("Config file does not exist"); }
-//            FileReader reader = new FileReader(configFile);
-//            props.load(reader);
-//            reader.close();
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(null, "Cannot load config file, Default configuration is used instead.");
-//            this.log.warning("Cannot load config file, Default configuration is used instead.\n");
-//            loadDefaultConfig();
-//        }
     }
 
     private void loadDefaultConfig() {
@@ -85,18 +74,6 @@ public class SnakeApp {
         this.rows = 40;
         this.cols = 40;
     }
-
-//    public void saveConfig() {
-//        try {
-//            File configFile = new File("conf.properties");
-//            FileWriter writer = new FileWriter(configFile);
-//            props.store(writer, "Game settings");
-//            writer.close();
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(SnakeView.view, String.format("Failed to save configs: %s", e.getMessage()));
-//            log.severe(String.format("Failed to save configs: %s", e.getMessage()));
-//        }
-//    }
 
     // getter functions
 
@@ -156,6 +133,9 @@ public class SnakeApp {
         }
     }
 
+    /**
+     * Show a popup window to let the user config the game
+     */
     public static void init() {
     	app.isEnd = false;
         // load properties, set up global logger
@@ -225,8 +205,8 @@ public class SnakeApp {
                 p1Left = 65;
                 p1Right = 68;
             } else {
-                p1Up = 88;
-                p1Down = 67;
+                p1Up = 67;
+                p1Down = 88;
                 p1Left = 90;
                 p1Right = 86;
             }
@@ -238,8 +218,8 @@ public class SnakeApp {
                 p2Left = 37;
                 p2Right = 39;
             } else {
-                p2Up = 74;
-                p2Down = 75;
+                p2Up = 75;
+                p2Down = 74;
                 p2Left = 72;
                 p2Right = 76;
             }

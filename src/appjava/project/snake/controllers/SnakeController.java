@@ -15,7 +15,10 @@ public class SnakeController {
 	private SnakeMovingThread user1Thread, user2Thread;
 	
 	private SnakeController() {}
-	
+
+	/**
+	 * Initialize Player 1
+	 */
 	public void generateUser1()
 	{
 		// build snake by adding blocks
@@ -28,7 +31,10 @@ public class SnakeController {
 		this.user1 = new Snake(lst, Direction.RIGHT, Owner.PLAYER1);
 		this.user1Thread = new SnakeMovingThread(user1);
 	}
-	
+
+	/**
+	 * Initialize player 2
+	 */
 	public void generateUser2()
 	{
 		LinkedList<Block> lst = new LinkedList<Block>();
@@ -44,7 +50,11 @@ public class SnakeController {
 		user1Thread.start();
 		user2Thread.start();
 	}
-	
+
+	/**
+	 * Change snake direction
+	 * @param action Enum that represents the action taken by user
+	 */
 	public void performAction(PlayerAction action) {
 		switch (action) {
 			case user1Up:

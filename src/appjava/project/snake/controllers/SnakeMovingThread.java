@@ -19,6 +19,8 @@ public class SnakeMovingThread extends Thread{
 		{
 			try {
 				Thread.sleep(snake.getMoveInterval());
+
+				// if is AI snake, let the RNG decide
 				if(snake.isAI())
 				{
 					int pick = new Random().nextInt(Direction.values().length);
