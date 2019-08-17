@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
 
+/**
+ * snake GUI
+ *
+ */
 public class SnakeApp {
     public static final SnakeApp app = new SnakeApp();
     private Properties props;
@@ -34,6 +38,9 @@ public class SnakeApp {
     private int maxPts;
     private boolean isEnd;
 
+    /**
+     * set up the logger for snake GUI
+     */
     private void setupLogger() {
         this.log = Logger.getLogger("SnakeApp");
         StreamHandler handler;

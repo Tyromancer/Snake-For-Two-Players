@@ -7,7 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-
+/**	
+ * automatically generate a computer-controlled snake on the board
+ * 
+ * 
+ */
 public class AISnakeGenerateThread extends Thread {
     private static int interval = 5000;
 
@@ -15,6 +19,10 @@ public class AISnakeGenerateThread extends Thread {
 //        switch
 //    }
 
+    /**
+     * main function
+     * generate AI-controlled snake
+     */
     @Override
     public void run() {
 

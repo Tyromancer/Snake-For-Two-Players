@@ -5,12 +5,19 @@ import appjava.project.snake.models.PlayerAction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * used to monitor the player 2's operation
+ *
+ */
 public class Player2KeyListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+    /**
+     * monitor the pressed key, get the operation of player 2
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (SnakeController.controller == null) { return; }

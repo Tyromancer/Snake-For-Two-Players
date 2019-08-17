@@ -8,7 +8,10 @@ import appjava.project.snake.models.Owner;
 import appjava.project.snake.models.PlayerAction;
 import appjava.project.snake.models.Snake;
 import appjava.project.snake.views.GameBoard;
-
+/**
+ * generate player1 and player2 and player's operation
+ *
+ */
 public class SnakeController {
 	public static SnakeController controller = new SnakeController();
 	private Snake user1, user2;
@@ -44,7 +47,9 @@ public class SnakeController {
 		this.user2 = new Snake(lst, Direction.LEFT, Owner.PLAYER2);
 		this.user2Thread = new SnakeMovingThread(user2);
 	}
-	
+	/**
+	 * start the game
+	 */
 	public void start()
 	{
 		user1Thread.start();

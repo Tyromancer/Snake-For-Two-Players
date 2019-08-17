@@ -1,5 +1,9 @@
 package appjava.project.snake.models;
 
+/**
+ * the status of snake
+ *
+ */
 public enum Status {
     PLAYER1,
     PLAYER2,

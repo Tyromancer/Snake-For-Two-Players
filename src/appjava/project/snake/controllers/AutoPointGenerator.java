@@ -7,10 +7,23 @@ import appjava.project.snake.models.Status;
 import appjava.project.snake.models.Utilities;
 import appjava.project.snake.views.GameBoard;
 
+/**
+ * automatically generate the new items on the board.
+ * 3 different items in total: regular item, speed-up, speed down
+ * regular item make snake grow
+ * speed-up item make snake travel faster
+ * speed-down item slow the snake down
+ *
+ */
 public class AutoPointGenerator extends Thread {
 	
 	public static int interval = 1000;
 	
+	/**
+	 * main function
+	 * generate items randomly
+	 * ratio: 7 regular item : 2 speed-up item : 1 slow-down item
+	 */
 	public void run()
 	{
 		while(!SnakeApp.app.isEnd())

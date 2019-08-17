@@ -20,7 +20,10 @@ public class GameBoard extends JPanel {
     private GameBoard() {
     	
     }
-    
+    /**
+     * initialize the game board, fill panel with blocks
+     *      
+     */
     public static void init()
     {
     	bd.board = new Block[SnakeApp.app.getRows()][SnakeApp.app.getCols()];
@@ -35,6 +38,12 @@ public class GameBoard extends JPanel {
         }
     }
 
+    /**
+     * get the block in specific location
+     * @param r row
+     * @param c column
+     * @return the block at the specific location
+     */
     public Block getBlock(int r, int c) {
         return this.board[r][c];
     }
@@ -53,10 +62,10 @@ public class GameBoard extends JPanel {
     } 
 
     /**
-     * Set the type (status) of tile at the given coordinate.
+     * Set the given status of tile at the given coordinate.
      * @param r row number
      * @param c column number
-     * @param status 
+     * @param status status
      */
     public void setStatus(int r, int c, Status status) {
         // check if index out of bound

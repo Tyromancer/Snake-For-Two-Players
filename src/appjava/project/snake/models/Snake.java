@@ -6,6 +6,10 @@ import appjava.project.snake.controllers.SnakeApp;
 import appjava.project.snake.views.GameBoard;
 import appjava.project.snake.views.SnakeView;
 
+/**
+ * Snake class
+ *
+ */
 public class Snake {
     private LinkedList<Block> lst;
     private Direction lastDir, newDir;
@@ -275,6 +279,9 @@ public class Snake {
 
     }
     
+    /**
+     * increase the snake's speed
+     */
     public void speedUp()
     {
     	this.moveInterval *= 0.9;
@@ -285,6 +292,9 @@ public class Snake {
 		}
     }
     
+    /**
+     * decrease the snake's speed
+     */
     public void speedDown()
     {
     	this.moveInterval /= 0.9;
@@ -295,6 +305,10 @@ public class Snake {
 		}
     }
     
+    /**
+     * check if the snake is AI
+     * @return true if the snake is AI, false if the snake is player
+     */
     public boolean isAI()
     {
     	return this.owner == Owner.AI;

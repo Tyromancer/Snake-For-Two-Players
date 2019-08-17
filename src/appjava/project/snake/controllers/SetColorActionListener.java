@@ -7,7 +7,10 @@ import appjava.project.snake.views.SnakeView;
 
 import java.awt.*;
 import java.awt.event.*;
-
+/**
+ * set color for each block on the grid
+ *
+ */
 public class SetColorActionListener implements ActionListener {
 
     @Override

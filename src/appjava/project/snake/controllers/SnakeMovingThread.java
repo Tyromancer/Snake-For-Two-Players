@@ -5,13 +5,24 @@ import java.util.Random;
 import appjava.project.snake.models.Direction;
 import appjava.project.snake.models.Snake;
 
+/**
+ * the snake will keep moving whenever it moves
+ *
+ */
 public class SnakeMovingThread extends Thread{
 	private Snake snake;
 	
+	/**
+	 * create a thread of snake
+	 * @param snake
+	 */
 	public SnakeMovingThread(Snake snake) {
 		this.snake = snake;
 	}
 	
+	/**
+	 * snake will keep moving when it lives
+	 */
 	@Override
 	public void run()
 	{

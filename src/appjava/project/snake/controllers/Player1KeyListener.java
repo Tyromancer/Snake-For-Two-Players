@@ -6,6 +6,10 @@ import appjava.project.snake.models.Snake;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * used to monitor the player 1's operation
+ *
+ */
 public class Player1KeyListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
@@ -13,6 +17,9 @@ public class Player1KeyListener implements KeyListener {
     }
 
 
+    /**
+     * monitor the pressed key, get the operation of player 1
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO: check if game started and status of snake 1

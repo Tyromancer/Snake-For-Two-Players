@@ -36,10 +36,18 @@ public class SnakeView extends JFrame {
         this.pts2.setText(String.valueOf( Integer.parseInt(this.pts2.getText()) + 1 ));
     }
 
+    /**
+     * set the statistic on the panel: velocity of player1
+     * @param v velocity of player1
+     */
     public void setV1(double v) {
         this.v1.setText(String.format("%.4f", 1 + v));
     }
 
+    /**
+     * set the statistic on the panel: velocity of player2
+     * @param v velocity of player2
+     */
     public void setV2(double v) {
         this.v2.setText(String.format("%.4f", 1 + v));
     }
@@ -137,6 +145,9 @@ public class SnakeView extends JFrame {
         this.add(statPanel);
     }
 
+    /**
+     * initialize the game
+     */
     public void initGame() {
         this.setupMenu();
         this.initDisplay();
@@ -147,6 +158,9 @@ public class SnakeView extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * constructor
+     */
     public SnakeView() {
         super("Snake for two players");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
