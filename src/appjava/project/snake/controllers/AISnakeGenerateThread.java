@@ -15,13 +15,11 @@ import java.util.Random;
 public class AISnakeGenerateThread extends Thread {
     private static int interval = 5000;
 
-//    private List<Block> getBlocks(int r, int c, Direction d) {
-//        switch
-//    }
-
     /**
-     * main function
      * generate AI-controlled snake
+     * AI snakes will spawn after a certain time interval.
+     * The time interval will be shorter after each AI spawned.
+     * The spawning of AI snake will be forecasted by blinking the spawning area.
      */
     @Override
     public void run() {
@@ -34,7 +32,7 @@ public class AISnakeGenerateThread extends Thread {
                 e.printStackTrace();
             }
 
-            interval += 10;
+            interval -= 10;
 
             int rows = SnakeApp.app.getRows();
             int cols = SnakeApp.app.getCols();

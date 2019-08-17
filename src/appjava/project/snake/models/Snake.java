@@ -8,7 +8,7 @@ import appjava.project.snake.views.SnakeView;
 
 /**
  * Snake class
- *
+ * Can be either player snake or AI snake
  */
 public class Snake {
     private LinkedList<Block> lst;

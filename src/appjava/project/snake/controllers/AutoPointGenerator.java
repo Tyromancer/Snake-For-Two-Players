@@ -31,12 +31,11 @@ public class AutoPointGenerator extends Thread {
 			try {
 				Thread.sleep(interval);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return;
 			}
 
-			interval += 10;
+			interval -= 10;
 
 			int total_row = SnakeApp.app.getRows();
 			int total_col = SnakeApp.app.getCols();

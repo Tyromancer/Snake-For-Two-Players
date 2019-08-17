@@ -22,6 +22,8 @@ public class SnakeMovingThread extends Thread{
 	
 	/**
 	 * snake will keep moving when it lives
+	 * The time interval between each movement depends on the attribute of the snake itself
+	 * If the snake is AI-controlled, the behavior will be decided.
 	 */
 	@Override
 	public void run()

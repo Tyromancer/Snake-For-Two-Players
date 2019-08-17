@@ -21,6 +21,7 @@ public class SnakeController {
 
 	/**
 	 * Initialize Player 1
+	 * choose 3 blocks and start a controlling thread
 	 */
 	public void generateUser1()
 	{
@@ -37,6 +38,7 @@ public class SnakeController {
 
 	/**
 	 * Initialize player 2
+	 * choose 3 blocks and start a controlling thread
 	 */
 	public void generateUser2()
 	{
@@ -57,7 +59,8 @@ public class SnakeController {
 	}
 
 	/**
-	 * Change snake direction
+	 * taking action corresponding to player key pressing
+	 * mainly change the direction of the player's snake
 	 * @param action Enum that represents the action taken by user
 	 */
 	public void performAction(PlayerAction action) {
