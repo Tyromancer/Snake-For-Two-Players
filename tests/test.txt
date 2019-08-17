@@ -1,0 +1,30 @@
+Before the testing on the program, please make sure the program has been installed successfully.
+
+It would be better if there are two players doing the test together, but one is also fine as long as controlling two snakes at once doesn't make them die too quick.
+
+After running scripts/run, there should be a configuration dialog appeared.
+User may choose the boardsize or different key-binding sets.
+For this test, make rows as 40, cols as 40, WSAD for player 1 and ARROWS for player 2.
+
+After entering the game, player 1 can try pressing "S" and player may try "up arrow" to change the direction of the snakes.
+And two players may manipulate with the movement of the snakes for some time. 
+By moving snakes onto a block, the snake can "interact" with that block.
+Player may try to move onto a "green" block, which represents a "point item" so the length of the player's snake will increase.
+Also, the statistic on the right side will change correspondingly.
+
+Note that there are different items represented by different colors.
+Player may try to pick items in dark green, which will slow down his/her snake's speed.
+Correspondingly, picking up the item in purple will increase the speed.
+
+Besides, there will be blue blocks appearing on the board. They are identified as AI snakes.
+Before the spawn of AI snakes, the spawning area will blink for several time to warn the player.
+
+When the snake (either player's or AI's) hit on the body of another snake or the boundary, the snake dies.
+On the death of one player, the other player will win the game.
+When an AI snake dies, the rest of its body will becomes collectable point items.
+
+Also, the generation of AI snakes and items will speed up as the game time passes, to provide the tie-breaker.
+
+Finally, another way to win a game is to pick items and gain 30 points.
+
+Upon the win of one player, the winning message will be displayed in a messageDialog, and the program shall be closed.

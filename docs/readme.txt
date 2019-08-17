@@ -11,7 +11,7 @@ There is also an upper limit of points a player can have. If one of the two play
  win the game
 
 
-This application is developed and tested under:
+This application is developed and tested under: Windows 10 && Java 8
 
 
 For how to use and test the application, please refer test/test.txt
